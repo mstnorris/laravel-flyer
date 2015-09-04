@@ -71,6 +71,7 @@ class FlyersController extends Controller
 
     public function addPhoto($zip, $street, Request $request)
     {
+
         $this->validate($request, [
             'photo' => 'required|mimes:jpg,jpeg,png,bmp'
         ]);
@@ -89,6 +90,7 @@ class FlyersController extends Controller
     {
         return Photo::named($file->getClientOriginalName())->move($file);
     }
+
     /**
      * Show the form for editing the specified resource.
      *
