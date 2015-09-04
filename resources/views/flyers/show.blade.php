@@ -8,6 +8,7 @@
     <div class="row">
         <div class="col-md-4">
             <h1>{{ $flyer->street }}</h1>
+
             <h2>{{ $flyer->price }}</h2>
 
             <hr>
@@ -25,21 +26,21 @@
                     @endforeach
                 </div>
             @endforeach
+
+            @if ( $user && $user->owns($flyer) )
+            <hr>
+            <form
+                action="{{ route('store_photo_path', [$flyer->zip , $flyer->street]) }}"
+                method="post"
+                class="dropzone"
+                id="addPhotosForm"
+                >
+                {{ csrf_field() }}
+            </form>
+            @endif
+
         </div>
     </div>
-
-    <hr>
-
-    <h2>Add Your Photos</h2>
-
-    <form
-        action="{{ route('store_photo_path', [$flyer->zip , $flyer->street]) }}"
-        method="post"
-        class="dropzone"
-        id="addPhotosForm"
-    >
-        {{ csrf_field() }}
-    </form>
 
 @stop
 
